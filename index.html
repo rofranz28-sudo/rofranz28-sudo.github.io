@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Girasoles de Amor Roberto</title>
+    <meta name="description" content="Una dedicatoria especial de flores amarillas, hecha con mucho amor para ti.">
+    <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
+
+    <meta name="theme-color" content="#1a1400">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="./style3.css">
+     <link rel="stylesheet" href="./style2.css">
+      <link rel="stylesheet" href="./style1.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: #0a0800; min-height: 100vh; }
+    </style>
+</head>
+
+   <!--
+
+Contáctame:
+
+   * Crea tus diseños sin código
+ https://comparte-amor.vercel.app/
+
+    * Invitame un café
+ https://buymeacoffee.com/alexx.dev
+
+    * Portafolio Web
+ https://alexxdev.vercel.app
+
+    * Sigueme en tiktok
+ https://www.tiktok.com/@alexx.dev?is_from_webapp=1&sender_device=pc
+ 
+    * Canal de WhatsApp
+ https://whatsapp.com/channel/0029VazQEXq90x2vIdNkrH1p
+
+ 
+   * WhatsApp: +52 5587450945
+https://wa.me/525568916053
+
+
+-->
+
+<body class="min-h-screen app-loading">
+
+    <div id="pageLoader" class="page-loader" role="status" aria-live="polite" aria-label="Cargando el universo">
+        <div class="loader-heart" aria-hidden="true"><span></span></div>
+        <p>Cargando nuestro jardín de estrellas</p>
+        <small>Preparando cada girasol para ti...</small>
+    </div>
+
+    <div id="startModal" aria-labelledby="intro-title">
+        <div class="sky" aria-hidden="true">
+            <span class="glow"></span>
+            <span class="stars"></span>
+            <span class="stars stars-far"></span>
+            <span class="shooting-star shooting-one"></span>
+            <span class="shooting-star shooting-two"></span>
+            <span class="love-particle p1">💛</span>
+            <span class="love-particle p2">🌻</span>
+            <span class="love-particle p3">✨</span>
+            <span class="love-particle p4">💛</span>
+            <span class="love-particle p5">🌻</span>
+            <span class="love-particle p6">✨</span>
+        <span class="love-particle p7">🌻</span>
+        <span class="love-particle p8">🌻</span>
+        <span class="love-particle p9">🌻</span>
+        <span class="love-particle p10">🌻</span>
+        <span class="love-particle p11">🌻</span>
+        <span class="love-particle p12">🌻</span>
+
+            <span class="bokeh b1"></span>
+            <span class="bokeh b2"></span>
+            <span class="bokeh b3"></span>
+        </div>
+
+        <div id="loadingState" role="status" aria-live="polite" aria-hidden="true">
+            <span class="loading-spinner" aria-hidden="true"><i></i></span>
+            <strong>Cargando universo...</strong>
+            <small>Preparando cada estrella para ti</small>
+        </div>
+
+        <header class="intro-header">
+            <span class="brand-mark" aria-hidden="true">∞</span>
+        </header>
+
+        <main class="intro">
+            <div class="intro-copy">
+                <p class="kicker"><span></span>Love You<span></span></p>
+                <h1 class="title" id="intro-title">
+                    Flores Amarillas<br><em>para Makenzie la mas bella</em>
+                </h1>
+            </div>
+
+            <div class="stage" aria-hidden="true">
+                <span class="stage-orbit orbit-one"></span>
+                <span class="stage-orbit orbit-two"></span>
+                <span class="stage-glow"></span>
+                <img src="gif1.gif" alt="" class="bear">
+                <span class="stage-floor"></span>
+            </div>
+
+            <button id="startBtn" type="button" aria-label="Entrar a nuestro universo">
+                <span class="btn-copy">Click aqui</span>
+                <span class="btn-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M5 12h13"></path><path d="M13 7l5 5-5 5"></path>
+                    </svg>
+                </span>
+            </button>
+        </main>
+
+        <footer class="intro-footer"><i></i></footer>
+    </div>
+
+    <canvas id="galaxy-canvas"></canvas>
+
+    <div id="galaxyUI" aria-hidden="true">
+        <button id="fullscreenBtn" class="fullscreen-btn" type="button" aria-label="Activar pantalla completa">
+            <svg class="expand-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M8 3H3v5M16 3h5v5M8 21H3v-5M16 21h5v-5"></path>
+            </svg>
+            <svg class="collapse-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M8 3v5H3M16 3v5h5M8 21v-5H3M16 21v-5h5"></path>
+            </svg>
+        </button>
+        <button id="soundBtn" class="sound-btn" type="button" aria-label="Silenciar musica">
+            <span class="sound-bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+            <span class="sound-label"></span>
+        </button>
+    </div>
+
+    <div id="err" class="error"></div>
+
+    <canvas id="fx"></canvas>
+
+    <script>
+        window.GALAXIA_INFINITA_DATA = {
+            "phrases": [],
+            "ringImages": [
+                "4.png",
+                "5.png",
+                "6.png",
+                "7.png",
+            ],
+            "title3d": "Te amo",
+            "assetBase": ""
+        };
+    </script>
+    
+    <script src="./script2.js"></script>
+    <script src="./script1.js"></script>
+</body>
+
+   <!--
+
+Contáctame:
+
+   * Crea tus diseños sin código
+ https://comparte-amor.vercel.app/
+
+    * Invitame un café
+ https://buymeacoffee.com/alexx.dev
+
+    * Portafolio Web
+ https://alexxdev.vercel.app
+
+    * Sigueme en tiktok
+ https://www.tiktok.com/@alexx.dev?is_from_webapp=1&sender_device=pc
+ 
+    * Canal de WhatsApp
+ https://whatsapp.com/channel/0029VazQEXq90x2vIdNkrH1p
+
+ 
+   * WhatsApp: +52 5587450945
+https://wa.me/525568916053
+
+
+-->
+
+</html>
